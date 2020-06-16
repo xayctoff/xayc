@@ -20,7 +20,7 @@ const routes: Routes = [
 		],
 	},
 	{
-		path: 'admin', loadChildren: './admin/admin.module#AdminModule',
+		path: 'admin', loadChildren: () => import('src/app/admin/admin.module').then(module => module.AdminModule)
 	},
 ];
 
