@@ -29,7 +29,7 @@ import { LoginComponent } from './login/login.component';
 						path: 'dashboard', component: DashboardComponent,
 					},
 					{
-						path: 'post-page/:id/edit', component: EditComponent,
+						path: 'post/:id/edit', component: EditComponent,
 					},
 					{
 						path: 'login', component: LoginComponent,
