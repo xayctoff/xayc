@@ -6,7 +6,8 @@ import { AdminLayoutComponent } from './admin/shared/components/admin-layout/adm
 import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { HomeComponent } from './home/home.component';
-import { PostComponent } from './post/post.component';
+import { PostComponent } from './shared/components/post/post.component';
+import { PostsComponent } from './posts/posts.component';
 
 @NgModule({
 	declarations: [
@@ -15,6 +16,7 @@ import { PostComponent } from './post/post.component';
 		HomeComponent,
 		MainLayoutComponent,
 		PostComponent,
+		PostsComponent,
 	],
 	imports: [
 		AppRoutingModule,
