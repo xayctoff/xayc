@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
-import { PostsComponent } from './posts/posts.component';
+import { PostPageComponent } from './post-page/post-page.component';
 
 const routes: Routes = [
 	{
@@ -15,7 +15,7 @@ const routes: Routes = [
 				path: '', component: HomeComponent,
 			},
 			{
-				path: 'posts/:id', component: PostsComponent,
+				path: 'post/:id', component: PostPageComponent,
 			},
 		],
 	},

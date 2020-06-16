@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './shared/components/post/post.component';
-import { PostsComponent } from './posts/posts.component';
+import { PostPageComponent } from './post-page/post-page.component';
 
 @NgModule({
 	declarations: [
@@ -16,7 +16,7 @@ import { PostsComponent } from './posts/posts.component';
 		HomeComponent,
 		MainLayoutComponent,
 		PostComponent,
-		PostsComponent,
+		PostPageComponent,
 	],
 	imports: [
 		AppRoutingModule,
