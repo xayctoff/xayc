@@ -1,8 +1,29 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
     "outDir": "./dist/out-tsc",
+    "paths": {
+      "@admin/*": [
+        "app/admin/*",
+        "app/admin/create/*",
+        "app/admin/dashboard/*",
+        "app/admin/login/*",
+        "app/admin/shared/*"
+      ],
+      "@environments/*": [
+        "environments/*"
+      ],
+      "@home/*": [
+        "app/home/*"
+      ],
+      "@post-page/*": [
+        "app/post-page/*"
+      ],
+      "@shared/*": [
+        "app/shared/*"
+      ]
+    },
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,

@@ -3,6 +3,14 @@
       (ngSubmit)="submit()">
     <h2>Войти в панель администратора</h2>
 
+    <div *ngIf="error$ | async as error" class="alert alert-danger">
+        {{error}}
+    </div>
+
+    <div *ngIf="message" class="alert alert-info">
+        {{message}}
+    </div>
+
     <div class="form-control"
          [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid }">
         <label for="email">Email</label>

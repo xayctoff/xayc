@@ -2,15 +2,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 
-import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
-import { CreateComponent } from './create/create.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminLayoutComponent } from '@admin/components/admin-layout/admin-layout.component';
+import { CreateComponent } from '@admin/create.component';
+import { DashboardComponent } from '@admin/dashboard.component';
 import { EditComponent } from './edit/edit.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from '@admin/login.component';
 
-import { AuthService } from './shared/services/auth.service';
+import { AuthGuard } from '@admin/services/auth.guard.service';
+import { AuthService } from '@admin/services/auth.service';
 
 @NgModule({
 	declarations: [
@@ -29,13 +30,13 @@ import { AuthService } from './shared/services/auth.service';
 						path: '', redirectTo: '/admin/login', pathMatch: 'full',
 					},
 					{
-						path: 'create', component: CreateComponent,
+						path: 'create', component: CreateComponent, canActivate: [AuthGuard],
 					},
 					{
-						path: 'dashboard', component: DashboardComponent,
+						path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
 					},
 					{
-						path: 'post/:id/edit', component: EditComponent,
+						path: 'post/:id/edit', component: EditComponent, canActivate: [AuthGuard],
 					},
 					{
 						path: 'login', component: LoginComponent,
@@ -49,6 +50,7 @@ import { AuthService } from './shared/services/auth.service';
 		RouterModule,
 	],
 	providers: [
+		AuthGuard,
 		AuthService,
 	],
 })

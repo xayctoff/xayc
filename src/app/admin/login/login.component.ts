@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService } from '@admin/services/auth.service';
 
-import { User } from '../../shared/interfaces/user.interface';
+import { User } from '@shared/interfaces/user.interface';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-login',
@@ -15,11 +16,21 @@ export class LoginComponent implements OnInit {
 
 	form: FormGroup;
 	isSubmitted = false;
+	message: string;
 
-	constructor(private _authService: AuthService, private _router: Router) {
+	constructor(
+		private _activatedRoute: ActivatedRoute,
+		private _authService: AuthService,
+		private _router: Router) {
 	}
 
 	ngOnInit(): void {
+		this._activatedRoute.queryParams.subscribe((params: Params) => {
+			if (params.isAuthorizationRequired) {
+				this.message = 'Вы должны быть авторизованы';
+			}
+		});
+
 		this.form = new FormGroup({
 			email: new FormControl(null, [
 				Validators.required,
@@ -30,6 +41,10 @@ export class LoginComponent implements OnInit {
 				Validators.minLength(6),
 			]),
 		});
+	}
+
+	get error$(): Subject<string> {
+		return this._authService.error$;
 	}
 
 	submit(): void {
@@ -48,6 +63,8 @@ export class LoginComponent implements OnInit {
 			() => {
 				this.form.reset();
 				this._router.navigate(['/admin', 'dashboard']);
+				this.isSubmitted = false;
+			}, () => {
 				this.isSubmitted = false;
 			},
 		);
