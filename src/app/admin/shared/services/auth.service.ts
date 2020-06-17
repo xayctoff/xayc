@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { User } from '../../../shared/interfaces';
+import { environment } from '../../../../environments/environment';
+import { User } from '../../../shared/interfaces/user.interface';
+import { tap } from 'rxjs/operators';
+import { FirebaseAuthResponse } from '../../../shared/interfaces/firebase-auth-response.interface';
 
 @Injectable()
 export class AuthService {
@@ -15,8 +18,12 @@ export class AuthService {
 		return 'token';
 	}
 
-	login(user: User): Observable<User> {
-		return this._http.post<User>('', user);
+	login(user: User): Observable<FirebaseAuthResponse> {
+		return this._http
+			.post<FirebaseAuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
+			.pipe(
+				tap(this.setToken)
+			);
 	}
 
 	logout(): void {
@@ -27,8 +34,8 @@ export class AuthService {
 		return !!this.token;
 	}
 
-	private setToken() {
-
+	private setToken(response: FirebaseAuthResponse) {
+		console.log(response);
 	}
 
 }
