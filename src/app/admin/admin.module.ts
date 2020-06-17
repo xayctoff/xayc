@@ -1,12 +1,16 @@
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
 import { CreateComponent } from './create/create.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditComponent } from './edit/edit.component';
 import { LoginComponent } from './login/login.component';
+
+import { AuthService } from './shared/services/auth.service';
 
 @NgModule({
 	declarations: [
@@ -16,6 +20,8 @@ import { LoginComponent } from './login/login.component';
 	],
 	imports: [
 		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
 		RouterModule.forChild([
 			{
 				path: '', component: AdminLayoutComponent, children: [
@@ -37,9 +43,13 @@ import { LoginComponent } from './login/login.component';
 				],
 			},
 		]),
+		SharedModule,
 	],
 	exports: [
 		RouterModule,
+	],
+	providers: [
+		AuthService,
 	],
 })
 export class AdminModule {

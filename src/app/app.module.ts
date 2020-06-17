@@ -1,6 +1,7 @@
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { SharedModule } from './shared/shared.module';
 
 import { AdminLayoutComponent } from './admin/shared/components/admin-layout/admin-layout.component';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { PostPageComponent } from './post-page/post-page.component';
 	imports: [
 		AppRoutingModule,
 		BrowserModule,
+		SharedModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
