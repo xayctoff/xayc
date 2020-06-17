@@ -1,1 +1,38 @@
-<p>create works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Создание нового поста</h1>
+
+    <div class="form-control"
+         [ngClass]="{invalid: form.get('title').touched && form.get('title').invalid }">
+        <label for="title">Заголовок</label>
+        <input id="title" type="text" formControlName="title">
+        <div *ngIf="form.get('title').touched && form.get('title').invalid"
+             class="validation">
+            <small *ngIf="form.get('title').errors.required">
+                Заполните данное поле
+            </small>
+        </div>
+    </div>
+
+    <div class="form-control">
+        <label>Текст</label>
+        <quill-editor formControlName="text"></quill-editor>
+    </div>
+
+    <div class="form-control"
+         [ngClass]="{invalid: form.get('author').touched && form.get('author').invalid }">
+        <label for="author">Заголовок</label>
+        <input id="author" type="text" formControlName="author">
+        <div *ngIf="form.get('author').touched && form.get('author').invalid"
+             class="validation">
+            <small *ngIf="form.get('author').errors.required">
+                Заполните данное поле
+            </small>
+        </div>
+    </div>
+
+    <button class="btn btn-block btn-dark"
+            type="submit"
+            [disabled]="form.invalid">
+        Опубликовать
+    </button>
+</form>
