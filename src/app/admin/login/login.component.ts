@@ -13,7 +13,8 @@ import { User } from '../../shared/interfaces/user.interface';
 })
 export class LoginComponent implements OnInit {
 
-	public form: FormGroup;
+	form: FormGroup;
+	isSubmitted = false;
 
 	constructor(private _authService: AuthService, private _router: Router) {
 	}
@@ -36,6 +37,8 @@ export class LoginComponent implements OnInit {
 			return;
 		}
 
+		this.isSubmitted = true;
+
 		const user: User = {
 			email: this.form.value.email,
 			password: this.form.value.password,
@@ -45,6 +48,7 @@ export class LoginComponent implements OnInit {
 			() => {
 				this.form.reset();
 				this._router.navigate(['/admin', 'dashboard']);
+				this.isSubmitted = false;
 			},
 		);
 	}
