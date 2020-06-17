@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
-import { PostPageComponent } from './post-page/post-page.component';
+import { HomeComponent } from '@home/home.component';
+import { MainLayoutComponent } from '@shared/components/main-layout/main-layout.component';
+import { PostPageComponent } from '@post-page/post-page.component';
 
 const routes: Routes = [
 	{
@@ -20,7 +20,7 @@ const routes: Routes = [
 		],
 	},
 	{
-		path: 'admin', loadChildren: () => import('src/app/admin/admin.module').then(module => module.AdminModule)
+		path: 'admin', loadChildren: () => import('@admin/admin.module').then(module => module.AdminModule)
 	},
 ];
 
