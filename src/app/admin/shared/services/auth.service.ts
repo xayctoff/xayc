@@ -9,7 +9,9 @@ import { catchError, tap } from 'rxjs/operators';
 import { FirebaseAuthResponse } from '@shared/interfaces/firebase-auth-response.interface';
 import { User } from '@shared/interfaces/user.interface';
 
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
 export class AuthService {
 
 	constructor(private _http: HttpClient) {

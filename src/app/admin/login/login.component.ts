@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
 		this._activatedRoute.queryParams.subscribe((params: Params) => {
 			if (params.isAuthorizationRequired) {
 				this.message = 'Вы должны быть авторизованы';
+			} else if (params.isAuthorizationFailed) {
+				this.message = 'Сессия истекла. Авторизуйтесь заново';
 			}
 		});
 
