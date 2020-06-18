@@ -32,7 +32,7 @@
 
         <button class="btn btn-block btn-dark"
                 type="submit"
-                [disabled]="form.invalid">
+                [disabled]="form.invalid || isSubmitted">
             Сохранить
         </button>
     </form>
