@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import { switchMap } from 'rxjs/operators';
+
+import { PostService } from '@shared/post.service';
+
+import { Post } from '@shared/interfaces/post.interface';
 
 @Component({
 	selector: 'app-edit',
@@ -7,10 +15,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditComponent implements OnInit {
 
-	constructor() {
+	form: FormGroup;
+
+	constructor(
+		private _activatedRoute: ActivatedRoute,
+		private _postsService: PostService) {
 	}
 
 	ngOnInit(): void {
+		this._activatedRoute.params.pipe(
+			switchMap((params: Params) => {
+				return this._postsService.getById(params.id);
+			}),
+		).subscribe((post: Post) => {
+			this.form = new FormGroup({
+				title: new FormControl(post.title, Validators.required),
+				text: new FormControl(post.text, Validators.required),
+			});
+		});
 	}
 
+	submit(): void {
+
+	}
 }
