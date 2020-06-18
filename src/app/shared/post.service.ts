@@ -30,4 +30,21 @@ export class PostService {
 			);
 	}
 
+	getAll() {
+		return this._http.get(`${environment.firebaseDatabaseUrl}/posts.json`)
+			.pipe(map((response: { [key: string]: any }) => {
+					return Object
+						.keys(response)
+						.map((key: string) => ({
+									...response[key],
+									id: key,
+									date: new Date(response[key].date),
+								}
+							),
+						);
+				},
+				),
+			);
+	}
+
 }

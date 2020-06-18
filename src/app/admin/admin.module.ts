@@ -14,9 +14,10 @@ import { AuthGuard } from '@admin/services/auth.guard.service';
 
 @NgModule({
 	declarations: [
-		LoginComponent,
 		CreateComponent,
+		DashboardComponent,
 		EditComponent,
+		LoginComponent,
 	],
 	imports: [
 		CommonModule,
