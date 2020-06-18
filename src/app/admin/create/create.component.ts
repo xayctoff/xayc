@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Post } from '@shared/interfaces/post.interface';
 
+import { PostService } from '@shared/post.service';
+
 @Component({
 	selector: 'app-create',
 	templateUrl: './create.component.html',
@@ -12,7 +14,7 @@ export class CreateComponent implements OnInit {
 
 	form: FormGroup;
 
-	constructor() {
+	constructor(private _postService: PostService) {
 	}
 
 	ngOnInit(): void {
@@ -34,5 +36,11 @@ export class CreateComponent implements OnInit {
 			title: this.form.value.title,
 			text: this.form.value.text,
 		};
+
+		this._postService.create(post).subscribe(
+			() => {
+				this.form.reset();
+			},
+		);
 	}
 }
