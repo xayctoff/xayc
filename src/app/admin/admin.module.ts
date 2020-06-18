@@ -10,13 +10,17 @@ import { DashboardComponent } from '@admin/dashboard.component';
 import { EditComponent } from './edit/edit.component';
 import { LoginComponent } from '@admin/login.component';
 
+import { SearchPipe } from '@admin/pipes/search.pipe';
+
 import { AuthGuard } from '@admin/services/auth.guard.service';
 
 @NgModule({
 	declarations: [
-		LoginComponent,
 		CreateComponent,
+		DashboardComponent,
 		EditComponent,
+		LoginComponent,
+		SearchPipe,
 	],
 	imports: [
 		CommonModule,
