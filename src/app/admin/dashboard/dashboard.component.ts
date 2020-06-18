@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 	posts: Post[] = [];
 	private _subscription: Subscription = new Subscription();
+	query: string;
 
 	constructor(private _postsService: PostService) {
 	}
