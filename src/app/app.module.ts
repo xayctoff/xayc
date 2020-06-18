@@ -1,3 +1,6 @@
+import { registerLocaleData } from '@angular/common';
+import ruLocale from '@angular/common/locales/ru';
+
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Provider } from '@angular/core';
@@ -11,6 +14,9 @@ import { PostComponent } from '@shared/components/post/post.component';
 import { PostPageComponent } from '@post-page/post-page.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '@shared/auth.interceptor';
+import { AdminModule } from '@admin/admin.module';
+
+registerLocaleData(ruLocale, 'ru');
 
 const INTERCEPTOR_PROVIDER: Provider = {
 	provide: HTTP_INTERCEPTORS,
@@ -28,6 +34,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
 		PostPageComponent,
 	],
 	imports: [
+		AdminModule,
 		AppRoutingModule,
 		BrowserModule,
 		SharedModule,

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
 
 import { AdminLayoutComponent } from '@admin/components/admin-layout/admin-layout.component';
+import { AlertComponent } from '@admin/components/alert/alert.component';
 import { CreateComponent } from '@admin/create.component';
 import { DashboardComponent } from '@admin/dashboard.component';
 import { EditComponent } from './edit/edit.component';
@@ -12,10 +13,12 @@ import { LoginComponent } from '@admin/login.component';
 
 import { SearchPipe } from '@admin/pipes/search.pipe';
 
+import { AlertService } from '@admin/services/alert.service';
 import { AuthGuard } from '@admin/services/auth.guard.service';
 
 @NgModule({
 	declarations: [
+		AlertComponent,
 		CreateComponent,
 		DashboardComponent,
 		EditComponent,
@@ -51,8 +54,10 @@ import { AuthGuard } from '@admin/services/auth.guard.service';
 	],
 	exports: [
 		RouterModule,
+		AlertComponent,
 	],
 	providers: [
+		AlertService,
 		AuthGuard,
 	],
 })

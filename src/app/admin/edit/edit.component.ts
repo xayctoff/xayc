@@ -2,12 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 
+import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
+import { AlertService } from '@admin/services/alert.service';
 import { PostService } from '@shared/post.service';
 
 import { Post } from '@shared/interfaces/post.interface';
-import { Subscription } from 'rxjs';
+
 
 @Component({
 	selector: 'app-edit',
@@ -23,6 +25,7 @@ export class EditComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private _activatedRoute: ActivatedRoute,
+		private _alertService: AlertService,
 		private _postsService: PostService) {
 	}
 
@@ -57,6 +60,7 @@ export class EditComponent implements OnInit, OnDestroy {
 		}).subscribe(
 			() => {
 				this.isSubmitted = false;
+				this._alertService.success('Пост успешно изменён');
 			},
 		);
 	}
