@@ -11,7 +11,6 @@ import { EditComponent } from './edit/edit.component';
 import { LoginComponent } from '@admin/login.component';
 
 import { AuthGuard } from '@admin/services/auth.guard.service';
-import { AuthService } from '@admin/services/auth.service';
 
 @NgModule({
 	declarations: [
@@ -51,7 +50,6 @@ import { AuthService } from '@admin/services/auth.service';
 	],
 	providers: [
 		AuthGuard,
-		AuthService,
 	],
 })
 export class AdminModule {
