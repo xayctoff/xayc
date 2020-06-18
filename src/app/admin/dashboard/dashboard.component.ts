@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
+import { AlertService } from '@admin/services/alert.service';
 import { PostService } from '@shared/post.service';
 
 import { Post } from '@shared/interfaces/post.interface';
@@ -16,7 +17,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 	private _subscription: Subscription = new Subscription();
 	query: string;
 
-	constructor(private _postsService: PostService) {
+	constructor(
+		private _alertService: AlertService,
+		private _postsService: PostService) {
 	}
 
 	ngOnInit(): void {
@@ -33,6 +36,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 		this._subscription = this._postsService.remove(id).subscribe(
 			() => {
 				this.posts.filter((post: Post) => post.id !== id);
+				this._alertService.success('Пост успешно удалён');
 			},
 		);
 	}
