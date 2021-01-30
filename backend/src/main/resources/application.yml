@@ -1,0 +1,20 @@
+instance:
+  name: ${spring.application.name}
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: xayc
+  main:
+    allow-bean-definition-overriding: true
+
+swagger:
+  title: Backend for Xayc application
+  description: The module serves as backend for Xayc
+  version: 0.1
+
+system:
+  default:
+    lang: rus
